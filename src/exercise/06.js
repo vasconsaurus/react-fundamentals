@@ -3,27 +3,97 @@
 
 import * as React from 'react'
 
+// // main exercise
+// function UsernameForm({onSubmitUsername}) {
+//   function handleSubmit(e) {
+//     e.preventDefault();
+//     const username = e.target.elements.username.value
+//     onSubmitUsername(username)
+//   }
+//   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label htmlFor="username">Username:</label>
+//         <input type="text" id="username"/>
+//       </div>
+//       <button type="submit">Submit</button>
+//     </form>
+//   )
+// }
+
+// function App() {
+//   const onSubmitUsername = username => alert(`You entered: ${username}`)
+//   return <UsernameForm onSubmitUsername={onSubmitUsername} />
+// }
+
+// export default App
+
+
+
+
+// // 1 - extra credit
+// function UsernameForm({onSubmitUsername}) {
+//   const inputEl = React.useRef(null);
+
+//   function handleSubmit(e) {
+//     e.preventDefault();
+
+//     const username = inputEl.current.value
+//     onSubmitUsername(username)
+
+//     e.target.reset();
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label htmlFor="username">Username:</label>
+//         <input type="text" id="username" ref={inputEl}/>
+//       </div>
+//       <button type="submit">Submit</button>
+//     </form>
+//   )
+// }
+
+// function App() {
+//   const onSubmitUsername = username => alert(`You entered: ${username}`)
+//   return <UsernameForm onSubmitUsername={onSubmitUsername} />
+// }
+
+// export default App
+
+
+
+
+// 2 - extra credit
 function UsernameForm({onSubmitUsername}) {
-  // 🐨 add a submit event handler here (`handleSubmit`).
-  // 💰 Make sure to accept the `event` as an argument and call
-  // `event.preventDefault()` to prevent the default behavior of form submit
-  // events (which refreshes the page).
-  // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-  //
-  // 🐨 get the value from the username input (using whichever method
-  // you prefer from the options mentioned in the instructions)
-  // 💰 For example: event.target.elements[0].value
-  // 🐨 Call `onSubmitUsername` with the value of the input
+  React.useEffect(() => {
+    const formInput = document.getElementById("username");
+    formInput.addEventListener('keyup', handleChange)
+  }, []);
 
-  // 🐨 add the onSubmit handler to the <form> below
+  function handleChange(e) {
+    console.log(e.target.value)
+    let value = e.target.value
+    const isValid = value === value.toLowerCase();
+    if(!isValid) {
+      alert('must be lowercase');
+    }
+  }
 
-  // 🐨 make sure to associate the label to the input.
-  // to do so, set the value of 'htmlFor' prop of the label to the id of input
+  function handleSubmit(e) {
+    e.preventDefault();
+    const username = e.target.elements.username.value
+    onSubmitUsername(username)
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
-        <input type="text" />
+        <label htmlFor="username">Username:</label>
+        <input type="text" id="username"/>
       </div>
       <button type="submit">Submit</button>
     </form>

@@ -53,16 +53,18 @@ import '../box-styles.css'
 
 // 2: extra credit
 function Box({className ='', style, size, ...otherProps}) {
-  if (size === 'small') {
-    className = 'box--small'
-  }
-  if (size === 'medium') {
-    className = 'box--medium'
-  }
-  if (size === 'large') {
-    className = 'box--large'
-  }
-  return < div className={`box ${className}`} style={{fontStyle: 'italic', ...style}} {...otherProps}/>
+  // if (size === 'small') {
+  //   className = 'box--small'
+  // }
+  // if (size === 'medium') {
+  //   className = 'box--medium'
+  // }
+  // if (size === 'large') {
+  //   className = 'box--large'
+  // }
+  const sizeClassName = size ? `box--${size}` : ''
+
+  return <div className={`box ${className} ${sizeClassName}`} style={{fontStyle: 'italic', ...style}} {...otherProps}/>
 }
 
 const smallBox = <Box children='small lightblue box' size='small' style={{backgroundColor: 'lightblue'}}/>
