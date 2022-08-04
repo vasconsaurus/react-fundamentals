@@ -21,17 +21,53 @@ import '../box-styles.css'
 
 // export default App
 
-// 1: extra credit
-// function Box(props) {
-//   return <div className={`box ${props.className}`} style={{fontStyle: 'italic', ...props.style}}>{props.children}</div>
+
+
+
+// // 1: extra credit
+// // function Box(props) {
+// //   return <div className={`box ${props.className}`} style={{fontStyle: 'italic', ...props.style}}>{props.children}</div>
+// // }
+// function Box({className ='', style, ...otherProps}) {
+//   return < div className={`box ${className}`} style={{fontStyle: 'italic', ...style}} {...otherProps}/>
 // }
-function Box({className ='', style, ...otherProps}) {
+
+// const smallBox = <Box children='small lightblue box' className='box--small' style={{backgroundColor: 'lightblue'}}/>
+// const mediumBox = <Box children='medium pink box' className='box--medium' style={{backgroundColor: 'pink'}}/>
+// const largeBox = <Box children='large orange box' className='box--large' style={{backgroundColor: 'orange'}}/>
+
+// function App() {
+//   return (
+//     <div>
+//       {smallBox}
+//       {mediumBox}
+//       {largeBox}
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+
+// 2: extra credit
+function Box({className ='', style, size, ...otherProps}) {
+  if (size === 'small') {
+    className = 'box--small'
+  }
+  if (size === 'medium') {
+    className = 'box--medium'
+  }
+  if (size === 'large') {
+    className = 'box--large'
+  }
   return < div className={`box ${className}`} style={{fontStyle: 'italic', ...style}} {...otherProps}/>
 }
 
-const smallBox = <Box children='small lightblue box' className='box--small' style={{backgroundColor: 'lightblue'}}/>
-const mediumBox = <Box children='medium pink box' className='box--medium' style={{backgroundColor: 'pink'}}/>
-const largeBox = <Box children='large orange box' className='box--large' style={{backgroundColor: 'orange'}}/>
+const smallBox = <Box children='small lightblue box' size='small' style={{backgroundColor: 'lightblue'}}/>
+const mediumBox = <Box children='medium pink box' size='medium' style={{backgroundColor: 'pink'}}/>
+const largeBox = <Box children='large orange box' size='large' style={{backgroundColor: 'orange'}}/>
 
 function App() {
   return (
@@ -44,15 +80,3 @@ function App() {
 }
 
 export default App
-
-
-    // function Message({children}) {
-    //   return <div className="message">{children}</div>
-    // }
-
-    // const element = (
-    //   <div className="container">
-    //     <Message children='Hello World' />
-    //     <Message children='Goodbye World' />
-    //   </div>
-    // )
