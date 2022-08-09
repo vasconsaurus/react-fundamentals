@@ -111,14 +111,12 @@ function UsernameForm({onSubmitUsername}) {
 
   function handleChange(e) {
     const { value } = e.target
-    const isValid = value === value.toLowerCase();
-    setMyInputValue(isValid ? value : value.toLowerCase())
+    setMyInputValue(value.toLowerCase())
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const username = e.target.elements.username.value
-    onSubmitUsername(username)
+    onSubmitUsername(myInputValue)
   }
 
   return (
